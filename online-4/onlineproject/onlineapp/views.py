@@ -13,45 +13,7 @@ from django.contrib import messages
 from django.db import transaction
 from django.core.files.storage import FileSystemStorage
 
-# def regstudent(request):
-#     if request.method=="POST":
-#         name=request.POST['name']
-#         email=request.POST['email']
-#         age=request.POST['age']
-#         place=request.POST['place']
-#         phoneno=request.POST['phone']
-#         uname=request.POST['uname']
-#         pas=request.POST['pass']
-        # User.objects.create_user(Name=name,email=email,username=uname,password=pas,Age=age,Place=place,Phoneno=phoneno,Djoin='2022-06-12',usertype="student",Status=0)
-        # Student.objects.create(Name=name,email=email,username=uname,password=pas,Age=age,Place=place,Phoneno=phoneno,Djoin='2022-06-12',usertype="student",Status=0)
-        # return HttpResponse("saved")
-        # return HttpResponse("<script>window.alert('saved');window.location.href='/login/'</script>")
-
-
-    # else:    
-    #     return render(request,"register.html")
-
-# def regstudent(request):
-#     if request.method == "POST":
-#         name = request.POST['name']
-#         email = request.POST['email']
-#         age = request.POST['age']
-#         place = request.POST['place']
-#         phoneno = request.POST['phone']
-#         uname = request.POST['uname']
-#         pas = request.POST['pass']
-
-#         # Create a new user
-#         user = User.objects.create_user(username=uname, email=email, password=pas, usertype="student", Status=0)
-
-#         # Create a new student associated with the user
-#         Student.objects.create(user=user, Name=name, Place=place, Phoneno=phoneno, Age=age)
-
-#         return HttpResponse("<script>window.alert('saved');window.location.href='/login/'</script>")
-
-#     return render(request,'register.html')    
-
-
+    
 def regstudent(request):
     if request.method == "POST":
         name = request.POST['name']
@@ -105,11 +67,7 @@ def log(request):
             # return redirect (studenthome)
             return redirect(coursedisplay)
             
-        # elif user is not None and user.usertype=="teacher":
-        #     login(request,user)
-        #     request.session['teachid']=user.id
-        #     # return render(request,'teacherhome.html')
-        #     return redirect(teacherhome)
+        
         return HttpResponse("not approved")
     else:
         return render(request,'login.html')    
@@ -278,113 +236,6 @@ def delete_lesson(request, pk):
     lesson.delete()
     return redirect('lesson_list')
 
-# @transaction.atomic
-# def create_quiz(request):
-#     if request.method == 'POST':
-#         module_id = request.POST.get('module')
-#         title = request.POST.get('title')
-#         description = request.POST.get('description')
-#         module = get_object_or_404(Module, id=module_id)
-
-        
-#         quiz = Quiz.objects.create(module=module, title=title, description=description)
-
-#         total_questions = int(request.POST.get('total_questions', 0))
-#         for question_index in range(total_questions):
-#             question_text = request.POST.get(f'questions[{question_index}][text]')
-#             if question_text:
-#                 question = Question.objects.create(quiz=quiz, text=question_text)
-
-#                 total_answers = int(request.POST.get(f'questions[{question_index}][total_answers]', 0))
-#                 for answer_index in range(total_answers):
-#                     answer_text = request.POST.get(f'questions[{question_index}][answers][{answer_index}][text]')
-#                     is_correct = request.POST.get(f'questions[{question_index}][answers][{answer_index}][is_correct]') == 'true'
-#                     if answer_text:
-#                         Answer.objects.create(question=question, text=answer_text, is_correct=is_correct)
-
-#         return redirect('quiz_list')
-
-#     modules = Module.objects.all()
-#     return render(request, 'quizes/quiz_form.html', {'modules': modules})
-
-
-
-# def update_quiz(request, pk):
-#     quiz = get_object_or_404(Quiz, id=pk)
-    
-#     if request.method == 'POST':
-#         quiz.module_id = request.POST.get('module')
-#         quiz.title = request.POST.get('title')
-#         quiz.description = request.POST.get('description')
-#         quiz.save()
-
-#         quiz.questions.all().delete()
-
-#         question_count = int(request.POST.get('total_questions'))
-#         quiz.question_count = question_count
-#         quiz.save()
-
-#         for i in range(question_count):
-#             question_text = request.POST.get(f'question_{i}_text')
-#             question = Question.objects.create(quiz=quiz, text=question_text)
-
-#             answer_count = int(request.POST.get(f'question_{i}_total_answers'))
-#             question.answer_count = answer_count
-#             question.save()
-
-#             for j in range(answer_count):
-#                 answer_text = request.POST.get(f'question_{i}_answer_{j}_text')
-#                 is_correct = request.POST.get(f'question_{i}_answer_{j}_is_correct') == 'true'
-#                 Answer.objects.create(question=question, text=answer_text, is_correct=is_correct)
-
-#         return redirect('quiz_list')
-#     else:
-#         modules = Module.objects.all()
-#         return render(request, 'quizes/update_quiz.html', {'quiz': quiz, 'modules': modules})
-
-# def delete_quiz(request, pk):
-#     quiz = get_object_or_404(Quiz, id=pk)
-#     if request.method == 'POST':
-#         quiz.delete()
-#         return redirect('quiz_list')
-#     return render(request, 'quizes/delete_quiz.html', {'quiz': quiz})
-
-# def quiz_list(request):
-#     quizzes = Quiz.objects.all()
-#     return render(request, 'quizes/quiz_list.html', {'quizzes': quizzes})
-
-
-
-# def take_quiz(request, quiz_id):
-#     quiz = get_object_or_404(Quiz, id=quiz_id)
-#     questions = quiz.questions.all()
-    
-#     if request.method == 'POST':
-#         score = 0
-#         total_questions = questions.count()
-        
-#         for question in questions:
-#             selected_answer_id = request.POST.get(f'question_{question.id}')
-#             if selected_answer_id:
-#                 selected_answer = Answer.objects.get(id=selected_answer_id)
-#                 if selected_answer.is_correct:
-#                     score += 1
-
-#         return render(request, 'quizes/quiz_result.html', {
-#             'quiz': quiz,
-#             'score': score,
-#             'total_questions': total_questions,
-#         })
-
-#     return render(request, 'quizes/take_quiz.html', {
-#         'quiz': quiz,
-#         'questions': questions,
-#     })
-
-# def quizdisplay(request, module_id):
-#     module = get_object_or_404(Module, id=module_id)
-#     quizzes = Quiz.objects.filter(module=module)
-#     return render(request, 'quizes/quiz_display.html', {'module': module, 'quizzes': quizzes})
 
 
 def index(request):
