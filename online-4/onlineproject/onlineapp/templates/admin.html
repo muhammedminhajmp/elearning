@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .admin-container {
+            margin-top: 50px;
+        }
+        .admin-card {
+            transition: transform 0.3s ease-in-out;
+        }
+        .admin-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container admin-container">
+        <h1 class="text-center">Admin Dashboard</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card admin-card animate__animated animate__fadeInUp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Create Course</h5>
+                        <p class="card-text">Add a new course to the system.</p>
+                        <a href="{% url 'course_form' %}" class="btn btn-primary">Go to Course Form</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card admin-card animate__animated animate__fadeInUp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Create Module</h5>
+                        <p class="card-text">Add a new module to a course.</p>
+                        <a href="{% url 'create_module' %}" class="btn btn-primary">Go to Module Form</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card admin-card animate__animated animate__fadeInUp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Create Lesson</h5>
+                        <p class="card-text">Add a new lesson to a module.</p>
+                        <a href="{% url 'create_lesson' %}" class="btn btn-primary">Go to Lesson Form</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card admin-card animate__animated animate__fadeInUp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Create Quiz</h5>
+                        <p class="card-text">Add a new quiz to a lesson.</p>
+                        <a href="{% url 'create_quiz' %}" class="btn btn-primary">Go to Quiz Form</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-4">
+                <div class="card admin-card animate__animated animate__fadeInUp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Course List</h5>
+                        <p class="card-text">View all courses in the system.</p>
+                        <a href="{% url 'course_list' %}" class="btn btn-primary">Go to Course List</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-4">
+                <div class="card admin-card animate__animated animate__fadeInUp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Student List</h5>
+                        <p class="card-text">View all courses in the system.</p>
+                        <a href="{% url 'studlist' %}" class="btn btn-primary">Go to Student List</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-4">
+                <div class="card admin-card animate__animated animate__fadeInUp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Home Page</h5>
+                        <p class="card-text">View all courses in the system.</p>
+                        <a href="{% url 'index' %}" class="btn btn-success">Go to Home Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- WOW.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</body>
+</html>

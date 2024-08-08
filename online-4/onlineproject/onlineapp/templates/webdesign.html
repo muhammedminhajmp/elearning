@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Courses</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #343a40;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: #ffffff;
+            margin: 10px 0;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        ul li:hover {
+            transform: translateY(-10px);
+        }
+        .course-card {
+            margin: 20px 0;
+        }
+        .course-card img {
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .caption {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="animate__animated animate__fadeInDown">Here are the list of web design courses</h1>
+        <ul class="animate__animated animate__fadeInUp">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>PHP</li>
+        </ul>
+        
+        <div class="row">
+            <div class="col-md-4 course-card animate__animated animate__zoomIn">
+                <img src="https://via.placeholder.com/350x200" class="img-fluid" alt="HTML Course">
+                <div class="caption">
+                    <h5>HTML Course</h5>
+                    <p>Learn the basics of HTML and build your first web page.</p>
+                </div>
+            </div>
+            <div class="col-md-4 course-card animate__animated animate__zoomIn" style="animation-delay: 0.2s;">
+                <img src="https://via.placeholder.com/350x200" class="img-fluid" alt="CSS Course">
+                <div class="caption">
+                    <h5>CSS Course</h5>
+                    <p>Master CSS and create beautiful, responsive designs.</p>
+                </div>
+            </div>
+            <div class="col-md-4 course-card animate__animated animate__zoomIn" style="animation-delay: 0.4s;">
+                <img src="https://via.placeholder.com/350x200" class="img-fluid" alt="JavaScript Course">
+                <div class="caption">
+                    <h5>JavaScript Course</h5>
+                    <p>Learn JavaScript and make your web pages interactive.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 course-card animate__animated animate__zoomIn" style="animation-delay: 0.6s;">
+                <img src="https://via.placeholder.com/350x200" class="img-fluid" alt="PHP Course">
+                <div class="caption">
+                    <h5>PHP Course</h5>
+                    <p>Understand PHP and develop dynamic server-side applications.</p>
+                </div>
+            </div>
+            <div class="col-md-4 course-card animate__animated animate__zoomIn" style="animation-delay: 0.8s;">
+                <img src="https://via.placeholder.com/350x200" class="img-fluid" alt="Bootstrap Course">
+                <div class="caption">
+                    <h5>Bootstrap Course</h5>
+                    <p>Learn Bootstrap and build responsive, mobile-first projects.</p>
+                </div>
+            </div>
+            <div class="col-md-4 course-card animate__animated animate__zoomIn" style="animation-delay: 1s;">
+                <img src="https://via.placeholder.com/350x200" class="img-fluid" alt="React Course">
+                <div class="caption">
+                    <h5>React Course</h5>
+                    <p>Dive into React and create modern web applications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

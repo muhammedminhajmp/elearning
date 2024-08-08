@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+        .quiz-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h5 {
+            margin-bottom: 15px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .submit-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="animate__animated animate__fadeInDown">General Knowledge Quiz</h1>
+        <div class="quiz-container animate__animated animate__fadeInUp">
+            <form id="quizForm" method="post">
+                {% csrf_token %}
+                <div class="question">
+                    <h5>1. What is the capital of France?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="Paris"> Paris</label>
+                        <label><input type="radio" name="q1" value="London"> London</label>
+                        <label><input type="radio" name="q1" value="Berlin"> Berlin</label>
+                        <label><input type="radio" name="q1" value="Madrid"> Madrid</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>2. What is the largest planet in our solar system?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="Earth"> Earth</label>
+                        <label><input type="radio" name="q2" value="Mars"> Mars</label>
+                        <label><input type="radio" name="q2" value="Jupiter"> Jupiter</label>
+                        <label><input type="radio" name="q2" value="Saturn"> Saturn</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>3. Who wrote "To Kill a Mockingbird"?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="Harper Lee"> Harper Lee</label>
+                        <label><input type="radio" name="q3" value="Mark Twain"> Mark Twain</label>
+                        <label><input type="radio" name="q3" value="Ernest Hemingway"> Ernest Hemingway</label>
+                        <label><input type="radio" name="q3" value="F. Scott Fitzgerald"> F. Scott Fitzgerald</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>4. What is the smallest country in the world?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="Vatican City"> Vatican City</label>
+                        <label><input type="radio" name="q4" value="Monaco"> Monaco</label>
+                        <label><input type="radio" name="q4" value="San Marino"> San Marino</label>
+                        <label><input type="radio" name="q4" value="Liechtenstein"> Liechtenstein</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>5. Which element has the chemical symbol 'O'?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="Oxygen"> Oxygen</label>
+                        <label><input type="radio" name="q5" value="Gold"> Gold</label>
+                        <label><input type="radio" name="q5" value="Silver"> Silver</label>
+                        <label><input type="radio" name="q5" value="Iron"> Iron</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>6. Who painted the Mona Lisa?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="Leonardo da Vinci"> Leonardo da Vinci</label>
+                        <label><input type="radio" name="q6" value="Vincent van Gogh"> Vincent van Gogh</label>
+                        <label><input type="radio" name="q6" value="Pablo Picasso"> Pablo Picasso</label>
+                        <label><input type="radio" name="q6" value="Claude Monet"> Claude Monet</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>7. What is the hardest natural substance on Earth?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="Diamond"> Diamond</label>
+                        <label><input type="radio" name="q7" value="Gold"> Gold</label>
+                        <label><input type="radio" name="q7" value="Iron"> Iron</label>
+                        <label><input type="radio" name="q7" value="Platinum"> Platinum</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>8. What is the currency of Japan?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="Yen"> Yen</label>
+                        <label><input type="radio" name="q8" value="Dollar"> Dollar</label>
+                        <label><input type="radio" name="q8" value="Euro"> Euro</label>
+                        <label><input type="radio" name="q8" value="Pound"> Pound</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>9. What is the main ingredient in guacamole?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="Avocado"> Avocado</label>
+                        <label><input type="radio" name="q9" value="Tomato"> Tomato</label>
+                        <label><input type="radio" name="q9" value="Onion"> Onion</label>
+                        <label><input type="radio" name="q9" value="Lemon"> Lemon</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>10. What is the capital city of Australia?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="Canberra"> Canberra</label>
+                        <label><input type="radio" name="q10" value="Sydney"> Sydney</label>
+                        <label><input type="radio" name="q10" value="Melbourne"> Melbourne</label>
+                        <label><input type="radio" name="q10" value="Brisbane"> Brisbane</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>11. Who discovered penicillin?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="Alexander Fleming"> Alexander Fleming</label>
+                        <label><input type="radio" name="q11" value="Marie Curie"> Marie Curie</label>
+                        <label><input type="radio" name="q11" value="Isaac Newton"> Isaac Newton</label>
+                        <label><input type="radio" name="q11" value="Albert Einstein"> Albert Einstein</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>12. What is the largest desert in the world?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="Sahara Desert"> Sahara Desert</label>
+                        <label><input type="radio" name="q12" value="Gobi Desert"> Gobi Desert</label>
+                        <label><input type="radio" name="q12" value="Arctic Desert"> Arctic Desert</label>
+                        <label><input type="radio" name="q12" value="Antarctic Desert"> Antarctic Desert</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>13. What is the main ingredient in traditional paella?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="Rice"> Rice</label>
+                        <label><input type="radio" name="q13" value="Pasta"> Pasta</label>
+                        <label><input type="radio" name="q13" value="Potato"> Potato</label>
+                        <label><input type="radio" name="q13" value="Bread"> Bread</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>14. Who developed the theory of general relativity?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="Albert Einstein"> Albert Einstein</label>
+                        <label><input type="radio" name="q14" value="Isaac Newton"> Isaac Newton</label>
+                        <label><input type="radio" name="q14" value="Galileo Galilei"> Galileo Galilei</label>
+                        <label><input type="radio" name="q14" value="Niels Bohr"> Niels Bohr</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>15. What is the chemical symbol for gold?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="Au"> Au</label>
+                        <label><input type="radio" name="q15" value="Ag"> Ag</label>
+                        <label><input type="radio" name="q15" value="Pb"> Pb</label>
+                        <label><input type="radio" name="q15" value="Fe"> Fe</label>
+                    </div>
+                </div>
+                <div class="submit-btn">
+                    <button type="button" class="btn btn-primary" onclick="submitQuiz()">Submit</button>
+                </div>
+            </form>
+            <div class="result alert alert-success"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        function submitQuiz() {
+            const form = document.getElementById('quizForm');
+            const formData = new FormData(form);
+            
+            fetch("{% url 'calculate_score2' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const result = document.querySelector('.result');
+                result.textContent = `You scored ${data.score} out of 15.`;
+                result.style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.course-item {
+    flex: 1 1 calc(25% - 16px); /* Ensures three items per row */
+    box-sizing: border-box; /* Ensures padding and border are included in the width/height */
+    margin: 8px; /* Optional: Adds space around each item */
+}

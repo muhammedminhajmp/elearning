@@ -1,0 +1,107 @@
+<!-- Quiz Form -->
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="module">Module:</label>
+        <select id="module" name="module" class="form-control" required>
+            <option value="">Select Module</option>
+            {% for module in modules %}
+                <option value="{{ module.id }}">{{ module.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" class="form-control" rows="5"></textarea>
+    </div>
+
+    <!-- Questions and Answers Section -->
+    <div id="questions-container">
+        <h3>Questions</h3>
+        <div class="form-group question" id="question-0">
+            <label for="questions[0][text]">Question 1:</label>
+            <input type="text" id="questions[0][text]" name="questions[0][text]" class="form-control" required>
+            <div class="answers-container" id="answers-container-0">
+                <h4>Answers</h4>
+                <div class="form-group answer" id="question-0-answer-0">
+                    <label for="questions[0][answers][0][text]">Answer 1:</label>
+                    <input type="text" id="questions[0][answers][0][text]" name="questions[0][answers][0][text]" class="form-control" required>
+                    <label for="questions[0][answers][0][is_correct]">Correct</label>
+                    <input type="checkbox" id="questions[0][answers][0][is_correct]" name="questions[0][answers][0][is_correct]" value="true">
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm mt-2 add-answer" data-question-id="0">Add Answer</button>
+            <input type="hidden" name="questions[0][total_answers]" id="question_0_total_answers" value="1">
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary mt-3" id="add-question">Add Question</button>
+    <input type="hidden" name="total_questions" id="total_questions" value="1">
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let questionCount = 1;  // Start with one question
+
+        document.getElementById('add-question').addEventListener('click', function() {
+            addQuestion();
+        });
+
+        function addQuestion() {
+            const questionsContainer = document.getElementById('questions-container');
+            const questionId = `question-${questionCount}`;
+            const totalAnswers = 1;  // Starting with one answer per question
+
+            const questionHtml = `
+                <div class="form-group question" id="${questionId}">
+                    <label for="questions[${questionCount}][text]">Question ${questionCount + 1}:</label>
+                    <input type="text" id="questions[${questionCount}][text]" name="questions[${questionCount}][text]" class="form-control" required>
+                    <div class="answers-container" id="answers-container-${questionCount}">
+                        <h4>Answers</h4>
+                        <div class="form-group answer" id="${questionId}-answer-0">
+                            <label for="questions[${questionCount}][answers][0][text]">Answer 1:</label>
+                            <input type="text" id="questions[${questionCount}][answers][0][text]" name="questions[${questionCount}][answers][0][text]" class="form-control" required>
+                            <label for="questions[${questionCount}][answers][0][is_correct]">Correct</label>
+                            <input type="checkbox" id="questions[${questionCount}][answers][0][is_correct]" name="questions[${questionCount}][answers][0][is_correct]" value="true">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm mt-2 add-answer" data-question-id="${questionCount}">Add Answer</button>
+                    <input type="hidden" name="questions[${questionCount}][total_answers]" id="questions_${questionCount}_total_answers" value="1">
+                </div>
+            `;
+            questionsContainer.innerHTML += questionHtml;
+            questionCount++;
+            document.getElementById('total_questions').value = questionCount;
+
+            // Add event listener for the new "Add Answer" button
+            const addAnswerButtons = document.querySelectorAll('.add-answer');
+            addAnswerButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const questionId = this.getAttribute('data-question-id');
+                    addAnswer(questionId);
+                });
+            });
+        }
+
+        function addAnswer(questionId) {
+            const answersContainer = document.getElementById(`answers-container-${questionId}`);
+            const answerIndex = parseInt(document.getElementById(`questions_${questionId}_total_answers`).value);
+            const answerHtml = `
+                <div class="form-group answer" id="questions_${questionId}_answer_${answerIndex}">
+                    <label for="questions[${questionId}][answers][${answerIndex}][text]">Answer ${answerIndex + 1}:</label>
+                    <input type="text" id="questions[${questionId}][answers][${answerIndex}][text]" name="questions[${questionId}][answers][${answerIndex}][text]" class="form-control" required>
+                    <label for="questions[${questionId}][answers][${answerIndex}][is_correct]">Correct</label>
+                    <input type="checkbox" id="questions[${questionId}][answers][${answerIndex}][is_correct]" name="questions[${questionId}][answers][${answerIndex}][is_correct]" value="true">
+                </div>
+            `;
+            answersContainer.innerHTML += answerHtml;
+            document.getElementById(`questions_${questionId}_total_answers`).value = answerIndex + 1;
+        }
+    });
+</script>

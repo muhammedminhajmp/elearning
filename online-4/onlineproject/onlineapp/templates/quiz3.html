@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+        .quiz-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h5 {
+            margin-bottom: 15px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .submit-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="animate__animated animate__fadeInDown">Science Quiz</h1>
+        <div class="quiz-container animate__animated animate__fadeInUp">
+            <form id="quizForm" method="post">
+                {% csrf_token %}
+                <div class="question">
+                    <h5>1. What is the chemical symbol for water?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="H2O"> H2O</label>
+                        <label><input type="radio" name="q1" value="O2"> O2</label>
+                        <label><input type="radio" name="q1" value="CO2"> CO2</label>
+                        <label><input type="radio" name="q1" value="HO"> HO</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>2. What planet is known as the Red Planet?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="Mars"> Mars</label>
+                        <label><input type="radio" name="q2" value="Venus"> Venus</label>
+                        <label><input type="radio" name="q2" value="Jupiter"> Jupiter</label>
+                        <label><input type="radio" name="q2" value="Saturn"> Saturn</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>3. What is the process by which plants make their food?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="Photosynthesis"> Photosynthesis</label>
+                        <label><input type="radio" name="q3" value="Respiration"> Respiration</label>
+                        <label><input type="radio" name="q3" value="Digestion"> Digestion</label>
+                        <label><input type="radio" name="q3" value="Transpiration"> Transpiration</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>4. What gas do plants absorb from the atmosphere?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="Carbon Dioxide"> Carbon Dioxide</label>
+                        <label><input type="radio" name="q4" value="Oxygen"> Oxygen</label>
+                        <label><input type="radio" name="q4" value="Nitrogen"> Nitrogen</label>
+                        <label><input type="radio" name="q4" value="Hydrogen"> Hydrogen</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>5. Who is known as the father of modern physics?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="Albert Einstein"> Albert Einstein</label>
+                        <label><input type="radio" name="q5" value="Isaac Newton"> Isaac Newton</label>
+                        <label><input type="radio" name="q5" value="Galileo Galilei"> Galileo Galilei</label>
+                        <label><input type="radio" name="q5" value="Niels Bohr"> Niels Bohr</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>6. What is the boiling point of water?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="100°C"> 100°C</label>
+                        <label><input type="radio" name="q6" value="0°C"> 0°C</label>
+                        <label><input type="radio" name="q6" value="50°C"> 50°C</label>
+                        <label><input type="radio" name="q6" value="150°C"> 150°C</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>7. What is the powerhouse of the cell?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="Mitochondria"> Mitochondria</label>
+                        <label><input type="radio" name="q7" value="Nucleus"> Nucleus</label>
+                        <label><input type="radio" name="q7" value="Ribosome"> Ribosome</label>
+                        <label><input type="radio" name="q7" value="Endoplasmic Reticulum"> Endoplasmic Reticulum</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>8. What is the main gas found in the air we breathe?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="Nitrogen"> Nitrogen</label>
+                        <label><input type="radio" name="q8" value="Oxygen"> Oxygen</label>
+                        <label><input type="radio" name="q8" value="Carbon Dioxide"> Carbon Dioxide</label>
+                        <label><input type="radio" name="q8" value="Hydrogen"> Hydrogen</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>9. What force keeps us on the ground?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="Gravity"> Gravity</label>
+                        <label><input type="radio" name="q9" value="Magnetism"> Magnetism</label>
+                        <label><input type="radio" name="q9" value="Friction"> Friction</label>
+                        <label><input type="radio" name="q9" value="Electricity"> Electricity</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>10. What is the speed of light?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="299,792 km/s"> 299,792 km/s</label>
+                        <label><input type="radio" name="q10" value="150,000 km/s"> 150,000 km/s</label>
+                        <label><input type="radio" name="q10" value="300,000 km/s"> 300,000 km/s</label>
+                        <label><input type="radio" name="q10" value="299,792 m/s"> 299,792 m/s</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>11. What is the chemical symbol for sodium?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="Na"> Na</label>
+                        <label><input type="radio" name="q11" value="S"> S</label>
+                        <label><input type="radio" name="q11" value="N"> N</label>
+                        <label><input type="radio" name="q11" value="Sa"> Sa</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>12. What is the most abundant gas in Earth's atmosphere?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="Nitrogen"> Nitrogen</label>
+                        <label><input type="radio" name="q12" value="Oxygen"> Oxygen</label>
+                        <label><input type="radio" name="q12" value="Carbon Dioxide"> Carbon Dioxide</label>
+                        <label><input type="radio" name="q12" value="Hydrogen"> Hydrogen</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>13. What is the atomic number of carbon?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="6"> 6</label>
+                        <label><input type="radio" name="q13" value="8"> 8</label>
+                        <label><input type="radio" name="q13" value="12"> 12</label>
+                        <label><input type="radio" name="q13" value="14"> 14</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>14. What is the chemical formula for table salt?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="NaCl"> NaCl</label>
+                        <label><input type="radio" name="q14" value="KCl"> KCl</label>
+                        <label><input type="radio" name="q14" value="CaCl2"> CaCl2</label>
+                        <label><input type="radio" name="q14" value="MgCl2"> MgCl2</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>15. What is the hardest natural substance on Earth?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="Diamond"> Diamond</label>
+                        <label><input type="radio" name="q15" value="Gold"> Gold</label>
+                        <label><input type="radio" name="q15" value="Iron"> Iron</label>
+                        <label><input type="radio" name="q15" value="Platinum"> Platinum</label>
+                    </div>
+                </div>
+                <div class="submit-btn">
+                    <button type="button" class="btn btn-primary" onclick="submitQuiz()">Submit</button>
+                </div>
+            </form>
+            <div class="result alert alert-success"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        function submitQuiz() {
+            const form = document.getElementById('quizForm');
+            const formData = new FormData(form);
+            
+            fetch("{% url 'calculate_score3' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const result = document.querySelector('.result');
+                result.textContent = `You scored ${data.score} out of 15.`;
+                result.style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

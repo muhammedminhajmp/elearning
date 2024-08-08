@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Your Cart</h1>
+        <h3>Username: {{ user.username }} </h3>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Quantity</th>
+                    <th>Price per Unit</th>
+                    <th>Individual Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.course.title }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.course.price }}</td>
+                        <td>${{ item.course.price }} x {{ item.quantity }} = {{ item.individual_price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Total Price: ${{ total_price }}</h3>
+        <a href="{% url 'coursedisplay' %}" class="btn btn-secondary">Continue Shopping</a>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

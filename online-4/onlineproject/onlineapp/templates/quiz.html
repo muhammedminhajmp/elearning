@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+        .quiz-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h5 {
+            margin-bottom: 15px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .submit-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="animate__animated animate__fadeInDown">Programming Quiz</h1>
+        <div class="quiz-container animate__animated animate__fadeInUp">
+            <form id="quizForm" method="post">
+                {% csrf_token %}
+                <div class="question">
+                    <h5>1. What is the output of print(2 ** 3) in Python?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="8"> 8</label>
+                        <label><input type="radio" name="q1" value="6"> 6</label>
+                        <label><input type="radio" name="q1" value="9"> 9</label>
+                        <label><input type="radio" name="q1" value="4"> 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>2. Which programming language is used for Android app development?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="Java"> Java</label>
+                        <label><input type="radio" name="q2" value="Python"> Python</label>
+                        <label><input type="radio" name="q2" value="C++"> C++</label>
+                        <label><input type="radio" name="q2" value="JavaScript"> JavaScript</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>3. What does CSS stand for?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="Cascading Style Sheets"> Cascading Style Sheets</label>
+                        <label><input type="radio" name="q3" value="Computer Style Sheets"> Computer Style Sheets</label>
+                        <label><input type="radio" name="q3" value="Creative Style Sheets"> Creative Style Sheets</label>
+                        <label><input type="radio" name="q3" value="Colorful Style Sheets"> Colorful Style Sheets</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>4. Which of the following is not a JavaScript framework or library?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="React"> React</label>
+                        <label><input type="radio" name="q4" value="Vue"> Vue</label>
+                        <label><input type="radio" name="q4" value="Bootstrap"> Bootstrap</label>
+                        <label><input type="radio" name="q4" value="Angular"> Angular</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>5. What does HTML stand for?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="Hypertext Markup Language"> Hypertext Markup Language</label>
+                        <label><input type="radio" name="q5" value="Hypertext Modeling Language"> Hypertext Modeling Language</label>
+                        <label><input type="radio" name="q5" value="Hypertext Management Language"> Hypertext Management Language</label>
+                        <label><input type="radio" name="q5" value="Hypertext Machine Learning"> Hypertext Machine Learning</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>6. What is the correct way to declare a variable in JavaScript?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="var x;"> var x;</label>
+                        <label><input type="radio" name="q6" value="variable x;"> variable x;</label>
+                        <label><input type="radio" name="q6" value="x = 5;"> x = 5;</label>
+                        <label><input type="radio" name="q6" value="int x;"> int x;</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>7. Which of the following is a correct way to comment in Python?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="// This is a comment"> // This is a comment</label>
+                        <label><input type="radio" name="q7" value="# This is a comment"> # This is a comment</label>
+                        <label><input type="radio" name="q7" value="<!-- This is a comment -->"> <!-- This is a comment --></label>
+                        <label><input type="radio" name="q7" value="/* This is a comment */"> /* This is a comment */</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>8. Which of the following is not a data type in Python?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="int"> int</label>
+                        <label><input type="radio" name="q8" value="float"> float</label>
+                        <label><input type="radio" name="q8" value="decimal"> decimal</label>
+                        <label><input type="radio" name="q8" value="boolean"> boolean</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>9. What is the output of the following JavaScript code?</h5>
+                    <pre>console.log("5" + 2);</pre>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="7"> 7</label>
+                        <label><input type="radio" name="q9" value="52"> 52</label>
+                        <label><input type="radio" name="q9" value="Error"> Error</label>
+                        <label><input type="radio" name="q9" value="undefined"> undefined</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>10. Which of the following is not a valid way to define a function in JavaScript?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="function myFunction() {}"> function myFunction() {}</label>
+                        <label><input type="radio" name="q10" value="const myFunction = function() {};"> const myFunction = function() {};</label>
+                        <label><input type="radio" name="q10" value="myFunction: function() {};"> myFunction: function() {};</label>
+                        <label><input type="radio" name="q10" value="() => {}"> () => {}</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>11. What is the correct syntax for a for loop in Python?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="for (var i = 0; i < 5; i++) {}"> for (var i = 0; i < 5; i++) {}</label>
+                        <label><input type="radio" name="q11" value="for i in range(5):"> for i in range(5):</label>
+                        <label><input type="radio" name="q11" value="for i = 0; i < 5; i++ {}"> for i = 0; i < 5; i++ {}</label>
+                        <label><input type="radio" name="q11" value="for (i = 0; i < 5; i++) {}"> for (i = 0; i < 5; i++) {}</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>12. Which of the following is true about Django?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="Django is a JavaScript library."> Django is a JavaScript library.</label>
+                        <label><input type="radio" name="q12" value="Django is a server-side web framework written in Python."> Django is a server-side web framework written in Python.</label>
+                        <label><input type="radio" name="q12" value="Django is used for machine learning."> Django is used for machine learning.</label>
+                        <label><input type="radio" name="q12" value="Django is used for mobile app development."> Django is used for mobile app development.</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>13. Which of the following is not a relational database management system?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="MySQL"> MySQL</label>
+                        <label><input type="radio" name="q13" value="SQLite"> SQLite</label>
+                        <label><input type="radio" name="q13" value="MongoDB"> MongoDB</label>
+                        <label><input type="radio" name="q13" value="PostgreSQL"> PostgreSQL</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>14. Which of the following is not a valid HTTP method?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="GET"> GET</label>
+                        <label><input type="radio" name="q14" value="PUT"> PUT</label>
+                        <label><input type="radio" name="q14" value="UPDATE"> UPDATE</label>
+                        <label><input type="radio" name="q14" value="DELETE"> DELETE</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h5>15. Which of the following is a feature of React?</h5>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="Virtual DOM"> Virtual DOM</label>
+                        <label><input type="radio" name="q15" value="One-way data binding"> One-way data binding</label>
+                        <label><input type="radio" name="q15" value="JSX"> JSX</label>
+                        <label><input type="radio" name="q15" value="Two-way data binding"> Two-way data binding</label>
+                    </div>
+                </div>
+                <div class="submit-btn">
+                    <button type="button" class="btn btn-primary" onclick="submitQuiz()">Submit</button>
+                </div>
+            </form>
+            <div class="result alert alert-success"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        function submitQuiz() {
+            const form = document.getElementById('quizForm');
+            const formData = new FormData(form);
+            
+            fetch("{% url 'calculate_score' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const result = document.querySelector('.result');
+                result.textContent = `You scored ${data.score} out of 15.`;
+                result.style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

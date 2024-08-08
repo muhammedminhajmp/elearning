@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eLearning Online Platform</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .section-title {
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .course-img {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .bg-primary {
+            background-color: #007bff !important;
+        }
+
+        .bg-secondary {
+            background-color: #6c757d !important;
+        }
+
+        .bg-success {
+            background-color: #28a745 !important;
+        }
+
+        .bg-danger {
+            background-color: #dc3545 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center">
+                <h6 class="section-title bg-white text-center text-primary px-3">About Us</h6>
+                <h1 class="mb-5">Welcome to Our eLearning Platform</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card service-card animate__animated animate__fadeInUp">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Comprehensive Courses</h4>
+                            <p class="card-text">We offer a wide range of courses in various fields such as Fullstack Development, Graphic Design, Video Editing, and Web Design. Each course is designed to provide in-depth knowledge and practical skills.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card service-card animate__animated animate__fadeInUp animate__delay-1s">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Expert Instructors</h4>
+                            <p class="card-text">Our courses are taught by industry experts with years of experience in their respective fields. Learn from the best to become the best.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card service-card animate__animated animate__fadeInUp animate__delay-2s">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Flexible Learning</h4>
+                            <p class="card-text">Learn at your own pace with our flexible online courses. Access the course materials anytime, anywhere, and complete the courses at your convenience.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card service-card animate__animated animate__fadeInUp animate__delay-3s">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Certification</h4>
+                            <p class="card-text">Upon completion of each course, you will receive a certificate that can be added to your resume or LinkedIn profile, showcasing your new skills to potential employers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-xxl py-5 bg-light">
+        <div class="container">
+            <div class="text-center">
+                <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+                <h1 class="mb-5">Our Popular Courses</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 wow zoomIn" data-wow-delay="0.1s">
+                        <img src="{% static 'img/cat-1.jpg' %}" class="card-img-top course-img" alt="Fullstack Development">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Fullstack Development</h5>
+                            <p class="card-text">Learn to build dynamic websites and applications using the latest technologies.</p>
+                        </div>
+                        <div class="card-footer bg-primary text-center text-white">
+                            49 Courses
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 wow zoomIn" data-wow-delay="0.3s">
+                        <img src="{% static 'img/cat-2.jpg' %}" class="card-img-top course-img" alt="Graphic Design">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Graphic Design</h5>
+                            <p class="card-text">Master the art of visual communication with our comprehensive graphic design courses.</p>
+                        </div>
+                        <div class="card-footer bg-secondary text-center text-white">
+                            49 Courses
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 wow zoomIn" data-wow-delay="0.5s">
+                        <img src="{% static 'img/cat-3.jpg' %}" class="card-img-top course-img" alt="Video Editing">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Video Editing</h5>
+                            <p class="card-text">Enhance your video production skills and create stunning videos with our courses.</p>
+                        </div>
+                        <div class="card-footer bg-success text-center text-white">
+                            49 Courses
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 wow zoomIn" data-wow-delay="0.7s">
+                        <img src="{% static 'img/cat-4.jpg' %}" class="card-img-top course-img" alt="Web Design">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Web Design</h5>
+                            <p class="card-text">Learn to design beautiful and responsive websites that provide an exceptional user experience.</p>
+                        </div>
+                        <div class="card-footer bg-danger text-center text-white">
+                            49 Courses
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-5">
+        <a href="{% url 'coursedisplay' %}" class="btn btn-primary">View All Courses</a>
+    </div>
+
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center">
+                <h6 class="section-title bg-white text-center text-primary px-3">Contact Us</h6>
+                <h1 class="mb-5">Get in Touch</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <form>
+                        <div class="form-group mb-4">
+                            <input type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                        </div>
+                        <div class="form-group mb-4">
+                            <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- WOW.js for animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</body>
+
+</html>

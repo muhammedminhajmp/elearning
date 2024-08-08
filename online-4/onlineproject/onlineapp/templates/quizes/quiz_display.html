@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quizzes for {{ module.title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .quiz-list {
+            margin-top: 50px;
+        }
+        .quiz-item {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="animate__animated animate__fadeInDown">Quizzes for {{ module.title }}</h2>
+        <div class="quiz-list animate__animated animate__fadeInUp">
+            {% if quizzes %}
+                {% for quiz in quizzes %}
+                    <div class="quiz-item">
+                        <h4>{{ quiz.title }}</h4>
+                        <p>{{ quiz.description }}</p>
+                        <a href="{% url 'take_quiz' quiz.id %}" class="btn btn-primary">Take Quiz</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No quizzes available for this module.</p>
+            {% endif %}
+        </div>
+        <a href="{% url 'moduledisplay' module.id %}" class="btn btn-secondary mt-3">Back to Modules</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

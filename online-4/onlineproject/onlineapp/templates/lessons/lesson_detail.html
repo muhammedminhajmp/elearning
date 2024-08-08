@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ lesson.title }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .lesson-detail {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #343a40;
+        }
+        p {
+            color: #6c757d;
+        }
+        .resources {
+            margin-top: 30px;
+        }
+        .pdf-embed {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-detail animate__animated animate__fadeInDown">
+            <h2>{{ lesson.title }}</h2>
+            <p>{{ lesson.content }}</p>
+            <!-- PDF Resources -->
+            <div class="resources">
+                <h4>Resources</h4>
+                <ul>
+                    {% for resource in resources %}
+                        <li><a href="{{ resource.pdf.url }}" target="_blank">{{ resource.title }}</a></li>
+                        <div class="pdf-embed">
+                            <embed src="{{ resource.pdf.url }}" type="application/pdf" width="100%" height="400px">
+                            <!-- Alternatively, you can use <iframe> -->
+                            <!-- <iframe src="{{ resource.pdf.url }}" width="100%" height="400px"></iframe> -->
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+            <a href="{% url 'lessondisplay' lesson.module.id %}" class="btn btn-secondary">Back to Lessons</a>
+            <a href="{% url 'add_to_cart' course.id %}" class="btn btn-primary">Buy</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

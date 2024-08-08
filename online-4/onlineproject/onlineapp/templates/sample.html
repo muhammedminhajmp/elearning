@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-7">
+        <h2>Update Quiz</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="module">Module:</label>
+                <select id="module" name="module" class="form-control" required>
+                    {% for module in modules %}
+                    <option value="{{ module.id }}" {% if module.id == quiz.module.id %}selected{% endif %}>{{ module.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" class="form-control" value="{{ quiz.title }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" class="form-control" rows="5">{{ quiz.description }}</textarea>
+            </div>
+            
+            <!-- Questions and Answers Section -->
+            <div id="questions-container" data-questions-count="{{ quiz.questions.count }}">
+                <h3>Questions</h3>
+                {% for question in quiz.questions.all %}
+                <div class="form-group question" id="question-{{ forloop.counter0 }}" data-question-id="{{ forloop.counter0 }}" data-answers-count="{{ question.answers.count }}">
+                    <label for="question_{{ forloop.counter0 }}_text">Question {{ forloop.counter }}:</label>
+                    <input type="text" id="question_{{ forloop.counter0 }}_text" name="questions[{{ forloop.counter0 }}][text]" class="form-control" value="{{ question.text }}" required>
+                    <div class="answers-container">
+                        <h4>Answers</h4>
+                        {% for answer in question.answers.all %}
+                        <div class="form-group answer">
+                            <label for="question_{{ forloop.parentloop.counter0 }}_answer_{{ forloop.counter0 }}_text">Answer {{ forloop.counter }}:</label>
+                            <input type="text" id="question_{{ forloop.parentloop.counter0 }}_answer_{{ forloop.counter0 }}_text" name="questions[{{ forloop.parentloop.counter0 }}][answers][{{ forloop.counter0 }}][text]" class="form-control" value="{{ answer.text }}" required>
+                            <label for="question_{{ forloop.parentloop.counter0 }}_answer_{{ forloop.counter0 }}_is_correct">Correct</label>
+                            <input type="checkbox" id="question_{{ forloop.parentloop.counter0 }}_answer_{{ forloop.counter0 }}_is_correct" name="questions[{{ forloop.parentloop.counter0 }}][answers][{{ forloop.counter0 }}][is_correct]" value="true" {% if answer.is_correct %}checked{% endif %}>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button type="button" class="btn btn-secondary add-answer" data-question="{{ forloop.counter0 }}">Add Answer</button>
+                    <input type="hidden" name="questions[{{ forloop.counter0 }}][total_answers]" id="question_{{ forloop.counter0 }}_total_answers" value="{{ question.answers.count }}">
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn-secondary" id="add-question">Add Question</button>
+            <input type="hidden" name="total_questions" id="total_questions" value="{{ quiz.questions.count }}">
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let questionCount = document.getElementById('questions-container').dataset.questionsCount;
+            let answerCounts = {};
+            document.querySelectorAll('.question').forEach(question => {
+                const questionId = question.dataset.questionId;
+                answerCounts[questionId] = question.dataset.answersCount;
+            });
+
+            document.getElementById('add-question').addEventListener('click', function() {
+                addQuestion();
+            });
+
+            document.querySelectorAll('.add-answer').forEach(button => {
+                button.addEventListener('click', function() {
+                    const questionId = this.getAttribute('data-question');
+                    addAnswer(questionId);
+                });
+            });
+
+            function addQuestion() {
+                const questionContainer = document.createElement('div');
+                questionContainer.classList.add('form-group', 'question');
+                questionContainer.id = `question-${questionCount}`;
+                questionContainer.dataset.questionId = questionCount;
+                questionContainer.dataset.answersCount = 2;
+                questionContainer.innerHTML = `
+                    <label for="question_${questionCount}_text">Question ${questionCount + 1}:</label>
+                    <input type="text" id="question_${questionCount}_text" name="questions[${questionCount}][text]" class="form-control" required>
+                    <div class="answers-container">
+                        <h4>Answers</h4>
+                        <div class="form-group answer">
+                            <label for="question_${questionCount}_answer_0_text">Answer 1:</label>
+                            <input type="text" id="question_${questionCount}_answer_0_text" name="questions[${questionCount}][answers][0][text]" class="form-control" required>
+                            <label for="question_${questionCount}_answer_0_is_correct">Correct</label>
+                            <input type="checkbox" id="question_${questionCount}_answer_0_is_correct" name="questions[${questionCount}][answers][0][is_correct]" value="true">
+                        </div>
+                        <div class="form-group answer">
+                            <label for="question_${questionCount}_answer_1_text">Answer 2:</label>
+                            <input type="text" id="question_${questionCount}_answer_1_text" name="questions[${questionCount}][answers][1][text]" class="form-control" required>
+                            <label for="question_${questionCount}_answer_1_is_correct">Correct</label>
+                            <input type="checkbox" id="question_${questionCount}_answer_1_is_correct" name="questions[${questionCount}][answers][1][is_correct]" value="true">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary add-answer" data-question="${questionCount}">Add Answer</button>
+                    <input type="hidden" name="questions[${questionCount}][total_answers]" id="question_${questionCount}_total_answers" value="2">
+                `;
+                document.getElementById('questions-container').appendChild(questionContainer);
+
+                questionContainer.querySelector('.add-answer').addEventListener('click', function() {
+                    const questionId = this.getAttribute('data-question');
+                    addAnswer(questionId);
+                });
+
+                answerCounts[questionCount] = 2;
+                questionCount++;
+                document.getElementById('total_questions').value = questionCount;
+            }
+
+            function addAnswer(questionId) {
+                let answerCount = parseInt(answerCounts[questionId]);
+                const answerContainer = document.createElement('div');
+                answerContainer.classList.add('form-group', 'answer');
+                answerContainer.innerHTML = `
+                    <label for="question_${questionId}_answer_${answerCount}_text">Answer ${answerCount + 1}:</label>
+                    <input type="text" id="question_${questionId}_answer_${answerCount}_text" name="questions[${questionId}][answers][${answerCount}][text]" class="form-control" required>
+                    <label for="question_${questionId}_answer_${answerCount}_is_correct">Correct</label>
+                    <input type="checkbox" id="question_${questionId}_answer_${answerCount}_is_correct" name="questions[${questionId}][answers][${answerCount}][is_correct]" value="true">
+                `;
+                document.querySelector(`#question-${questionId} .answers-container`).appendChild(answerContainer);
+                answerCounts[questionId] = answerCount + 1;
+                document.getElementById(`question_${questionId}_total_answers`).value = answerCount + 1;
+            }
+        });
+    </script>
+</body>
+</html>

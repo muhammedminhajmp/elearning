@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Django Quiz App</title>
+</head>
+<body>
+
+<div class="container mt-5 pt-5">
+    <h1 style="color: green; text-align: center;">Quiz World</h1>
+
+    <div class="col-md-6 mx-auto">
+        <form method="GET" action="{% url 'quiz33' %}">
+            <div class="form-group">
+                <label for="module">Select Module</label>
+                <select name="module" id="module" class="form-control">
+                    <option value="Choose">Choose</option>
+                    {% for module in modules %}
+                    <option value="{{ module.id }}">{{ module.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-danger mt-3">Submit</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
